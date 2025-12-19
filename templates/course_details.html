@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ course['title'] }} - Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/dashboard" style="font-size: 1.5em;">🐨 Edukoala</a>
+            <div style="float: right;">
+                <a href="/dashboard">Back to Dashboard</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container" style="padding: 0;"> <div class="course-header">
+            <h1>{{ course['title'] }}</h1>
+            <h2 style="margin-top: 10px; opacity: 0.9;">{{ course['price'] }}</h2>
+        </div>
+
+        <div style="padding: 20px;">
+
+            <div class="course-meta">
+                <span class="badge">⏱ {{ course['duration'] }}</span>
+                <span class="badge">📊 {{ course['level'] }}</span>
+                <span class="badge">👨‍🏫 {{ course['instructor'] }}</span>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+            <h3>About this Course</h3>
+            <p style="line-height: 1.6; color: #555;">
+                {{ course['description'] }}
+            </p>
+
+            <div class="instructor-box">
+                <strong>Your Instructor: {{ course['instructor'] }}</strong>
+                <p style="margin: 5px 0 0 0; font-size: 0.9em;">
+                    Top-rated instructor with over 5 years of experience in the industry.
+                </p>
+            </div>
+
+            <h3>What you will learn:</h3>
+            <ul style="line-height: 1.8; color: #444;">
+                <li>✅ Introduction and Setup</li>
+                <li>✅ Core Concepts and Fundamentals</li>
+                <li>✅ Advanced Techniques</li>
+                <li>✅ Final Project & Certification</li>
+            </ul>
+
+<a href="/enroll/{{ course['id'] }}" class="enroll-btn">Enroll Now for {{ course['price'] }}</a>
+
+        </div>
+    </div>
+    <br><br>
+</body>
+</html>

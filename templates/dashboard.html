@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edukoala Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <span style="font-weight: bold; font-size: 1.2em;">Welcome, {{ name }}!</span>
+
+            <div style="float: right;">
+                <a href="/my_courses" style="background-color: #00796b; padding: 5px 10px; border-radius: 4px;">My Learning</a>
+
+                <a href="/logout" style="margin-left: 15px;">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Available Courses</h2>
+
+        <form action="/dashboard" method="GET" style="margin-bottom: 20px;">
+            <input type="text" name="q" placeholder="Search for a course..." style="width: 70%; padding: 10px;">
+            <input type="submit" value="Search" style="width: 25%; padding: 10px; background: #555;">
+        </form>
+
+        {% for course in courses %}
+            <div class="course-card">
+                <h3>{{ course['title'] }}</h3>
+                <p>{{ course['description'] }}</p>
+                <div class="price">{{ course['price'] }}</div>
+                <a href="/course/{{ course['id'] }}" class="btn">View Details</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

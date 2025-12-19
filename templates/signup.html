@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .error-message {
+            color: #D8000C;
+            background-color: #FFBABA;
+            border: 1px solid #D8000C;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🐨 Edukoala</h1>
+    </header>
+
+    <div class="container">
+        <h2>Create Account</h2>
+
+        {% if error %}
+            <div class="error-message">
+                <strong>Error:</strong> {{ error }}
+            </div>
+        {% endif %}
+        <form method="POST">
+            <label>Username (no spaces):</label>
+            <input type="text" name="username" required>
+
+            <label>Password (6+ chars, at least one letter):</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="Sign Up">
+        </form>
+        <br>
+        <a href="/login">Already have an account? Login here.</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Success Message Style */
+        .success-box {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        /* Style for the empty state message */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+           <a href="/dashboard">← Back to Catalog</a>
+            <div style="float: right;">
+                <span>My Learning</span>
+                <a href="/logout" style="margin-left: 15px;">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% if show_success %}
+            <div class="success-box">
+                <strong>Success!</strong> You have enrolled in this course.
+            </div>
+        {% endif %}
+
+        <h2>My Courses</h2>
+
+        {% if courses %}
+            {% for course in courses %}
+                <div class="course-card">
+                    <h3>✅ {{ course['title'] }}</h3>
+                    <p>{{ course['description'] }}</p>
+                    <a href="/course/{{ course['id'] }}" class="btn">Continue Learning</a>
+
+                <a href="/drop/{{ course['id'] }}" class="btn" style="background-color: #d9534f; margin-left: 10px;">Drop Course</a>
+                </div>
+            {% endfor %}
+        {% else %}
+             <div class="empty-state">
+                <h3>You haven't enrolled in any courses yet.</h3>
+                <p>Check out the catalog to start learning!</p>
+                <br>
+                <a href="/dashboard" class="btn">Browse Courses</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
